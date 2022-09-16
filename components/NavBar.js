@@ -16,9 +16,9 @@ export default function NavBar() {
   return (
     <>
       <Popover as="header" className="relative">
-        <div className="py-6 bg-gray-200">
+        <div className="py-3 bg-gray-200">
           <nav
-            className="relative mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6"
+            className="relative mx-auto flex max-w-7xl items-center px-4 sm:px-6"
             aria-label="Global"
           >
             <div className="flex flex-1 items-center">
@@ -42,7 +42,7 @@ export default function NavBar() {
                 </Link>
 
                 <div className="-mr-2 flex items-center md:hidden">
-                  <Popover.Button className="focus-ring-inset inline-flex items-center justify-center rounded-md bg-gray-900 p-2 text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-white">
+                  <Popover.Button className="focus-ring-inset inline-flex items-center justify-center rounded-md bg-gray-500 p-2 text-gray-200 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-white">
                     <span className="sr-only">Open main menu</span>
                     <Bars3Icon className="h-6 w-6" aria-hidden="true" />
                   </Popover.Button>
@@ -97,17 +97,24 @@ export default function NavBar() {
             focus
             className="absolute inset-x-0 top-0 z-50 origin-top transform p-2 transition md:hidden"
           >
-            <div className="overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black ring-opacity-5">
+            <div className="overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-gray-700 ring-opacity-5">
               <div className="flex items-center justify-between px-5 pt-4">
                 <div>
-                  <img
+                  {/* <img
                     className="h-8 w-auto"
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                     alt=""
-                  />
+                  /> */}
+                  <Link href="/">
+                    <img
+                      className="h-8 w-auto sm:h-10 cursor-pointer"
+                      src="tree-of-life.png"
+                      alt=""
+                    />
+                  </Link>
                 </div>
                 <div className="-mr-2">
-                  <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600">
+                  <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-600">
                     <span className="sr-only">Close menu</span>
                     <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                   </Popover.Button>
@@ -135,12 +142,16 @@ export default function NavBar() {
                 </div> */}
                 <div className="mt-6 px-5">
                   <p className="text-center text-base font-medium text-gray-500">
-                    <a href="#" className="text-gray-900 hover:underline">
-                      Sign Up
-                    </a>
-                    <a href="#" className="text-gray-900 hover:underline">
-                      Login
-                    </a>
+                    <Link href="#" className="text-gray-900 hover:underline">
+                      <span className="text-base font-medium text-gray-700 ">
+                        Sign Up
+                      </span>
+                    </Link>
+                    <Link href="#" className="text-gray-900 hover:underline">
+                      <span className="text-base font-medium text-gray-700 ml-5 ">
+                        Login
+                      </span>
+                    </Link>
                   </p>
                 </div>
               </div>

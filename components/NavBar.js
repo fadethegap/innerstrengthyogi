@@ -7,7 +7,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
   { name: "Classes", href: "/classes" },
-  { name: "Discussion", href: "#" },
+  // { name: "Discussion", href: "#" },
   // { name: "Marketplace", href: "#" },
   // { name: "Company", href: "#" },
 ];
@@ -53,27 +53,28 @@ export default function NavBar() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="text-base font-medium text-gray-400 hover:text-gray-300"
+                    // className="text-base font-medium text-gray-400 hover:text-gray-300"
                   >
-                    {item.name}
+                    <span className="text-base font-medium text-gray-700 hover:text-gray-400">
+                      {item.name}
+                    </span>
                   </Link>
                 ))}
               </div>
             </div>
-            {/* <div className="hidden md:flex md:items-center md:space-x-6">
-                <a
-                  href="#"
-                  className="text-base font-medium text-white hover:text-gray-300"
-                >
+            <div className="hidden md:flex md:items-center md:space-x-6">
+              <Link href="#">
+                <span className="text-base font-medium text-gray-700 hover:text-gray-400">
                   Log in
-                </a>
-                <a
+                </span>
+              </Link>
+              {/* <a
                   href="#"
                   className="inline-flex items-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-base font-medium text-white hover:bg-gray-700"
                 >
                   Start free trial
-                </a>
-              </div> */}
+                </a> */}
+            </div>
           </nav>
         </div>
 

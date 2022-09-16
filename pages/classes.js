@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Yoga1 from "../public/yoga1.jpg";
 import Yoga2 from "../public/yoga2.jpg";
-// import Yoga3 from "../public/yoga5.jpg";
+import Yoga3 from "../public/yoga5.jpg";
 
 const posts = [
   {
@@ -13,7 +13,7 @@ const posts = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto accusantium praesentium eius, ut atque fuga culpa, similique sequi cum eos quis dolorum.",
     date: "Mar 16, 2020",
     datetime: "2020-03-16",
-    imageUrl: "yoga1.jpg",
+    imageUrl: Yoga1,
     readingTime: "6 min",
     author: {
       name: "Roel Aufderehar",
@@ -30,7 +30,7 @@ const posts = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit facilis asperiores porro quaerat doloribus, eveniet dolore. Adipisci tempora aut inventore optio animi., tempore temporibus quo laudantium.",
     date: "Mar 10, 2020",
     datetime: "2020-03-10",
-    imageUrl: "yoga2.jpg",
+    imageUrl: Yoga2,
     readingTime: "4 min",
     author: {
       name: "Brenna Goyette",
@@ -47,7 +47,7 @@ const posts = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint harum rerum voluptatem quo recusandae magni placeat saepe molestiae, sed excepturi cumque corporis perferendis hic.",
     date: "Feb 12, 2020",
     datetime: "2020-02-12",
-    imageUrl: "yoga3.jpg",
+    imageUrl: Yoga3,
     readingTime: "11 min",
     author: {
       name: "Daniela Metz",
@@ -81,11 +81,11 @@ export default function Classes() {
               className="flex flex-col overflow-hidden rounded-lg shadow-lg"
             >
               <div className="flex-shrink-0 relative">
-                <img
+                <Image
                   className="h-48 w-full object-cover"
                   src={post.imageUrl}
                   alt=""
-                  //   layout="fill"
+                  // layout="fill"
                   //   objectFit="contain"
                 />
               </div>

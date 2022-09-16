@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Yoga1 from "../public/yoga1.jpg";
 import Yoga2 from "../public/yoga2.jpg";
-import Yoga3 from "../public/yoga5.jpg";
+// import Yoga3 from "../public/yoga5.jpg";
 
 const posts = [
   {

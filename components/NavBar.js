@@ -65,6 +65,11 @@ export default function NavBar() {
             <div className="hidden md:flex md:items-center md:space-x-6">
               <Link href="#">
                 <span className="text-base font-medium text-gray-700 hover:text-gray-400">
+                  Sign Up
+                </span>
+              </Link>
+              <Link href="#">
+                <span className="text-base font-medium text-gray-700 hover:text-gray-400">
                   Log in
                 </span>
               </Link>
@@ -120,17 +125,19 @@ export default function NavBar() {
                     </a>
                   ))}
                 </div>
-                <div className="mt-6 px-5">
+                {/* <div className="mt-6 px-5">
                   <a
                     href="#"
                     className="block w-full rounded-md bg-indigo-600 py-3 px-4 text-center font-medium text-white shadow hover:bg-indigo-700"
                   >
                     Start free trial
                   </a>
-                </div>
+                </div> */}
                 <div className="mt-6 px-5">
                   <p className="text-center text-base font-medium text-gray-500">
-                    Existing customer?{" "}
+                    <a href="#" className="text-gray-900 hover:underline">
+                      Sign Up
+                    </a>
                     <a href="#" className="text-gray-900 hover:underline">
                       Login
                     </a>

@@ -15,7 +15,6 @@ export default function Home() {
               muted
               autoPlay
               loop
-              controls
               src="blackwater.mp4"
               type="video/mp4"
               className="absolute z-10 w-auto min-w-full min-h-full max-w-none"

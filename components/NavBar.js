@@ -123,15 +123,18 @@ export default function NavBar() {
               <div className="pt-5 pb-6">
                 <div className="space-y-1 px-2">
                   {navigation.map((item) => (
-                    <a
+                    <Link
                       key={item.name}
                       href={item.href}
-                      className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50"
+                      // className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50"
                     >
-                      {item.name}
-                    </a>
+                      <span className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50">
+                        {item.name}
+                      </span>
+                    </Link>
                   ))}
                 </div>
+
                 {/* <div className="mt-6 px-5">
                   <a
                     href="#"

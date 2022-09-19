@@ -1,4 +1,7 @@
-export default function Example() {
+import Image from "next/image";
+import streetArt from "../public/streetArt.jpg";
+
+export default function Home() {
   return (
     <>
       <div className="relative overflow-hidden">
@@ -6,16 +9,14 @@ export default function Example() {
           <header className="relative flex items-center justify-center h-screen mb-12 overflow-hidden">
             <div className="relative z-30 p-5 text-2xl text-white bg-gray-300 bg-opacity-50 rounded-xl">
               {/* <div className="text-sm text-center">Welcome to</div> */}
-              <div className="text-center tracking-widest">
-                Inner Strength Yogi
-              </div>
+              <div className="text-center tracking-widest">Welcome Friends</div>
             </div>
             <video
               muted
               autoPlay
               loop
               controls
-              src="ocean.mp4"
+              src="blackwater.mp4"
               type="video/mp4"
               className="absolute z-10 w-auto min-w-full min-h-full max-w-none"
             >
@@ -26,6 +27,7 @@ export default function Example() {
                 label="english_captions"
               ></track>
             </video>
+            {/* <Image src={streetArt} layout="fill" placeholder="blur" />" */}
           </header>
         </main>
       </div>

@@ -7,7 +7,7 @@ export default function Home() {
       <div className="relative overflow-hidden">
         <main>
           <header className="relative flex items-center justify-center h-screen mb-12 overflow-hidden">
-            <div className="relative z-30 p-5 text-2xl text-white bg-gray-300 bg-opacity-50 rounded-xl">
+            <div className="relative z-30 p-5 text-2xl text-slate-800 bg-white bg-opacity-80 rounded-xl">
               {/* <div className="text-sm text-center">Welcome to</div> */}
               <div className="text-center tracking-widest">Welcome Friends</div>
             </div>

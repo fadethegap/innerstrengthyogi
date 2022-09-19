@@ -1,5 +1,5 @@
 import Image from "next/image";
-import streetArt from "../public/streetArt.jpg";
+// import streetArt from "../public/streetArt.jpg";
 
 export default function Home() {
   return (
@@ -15,7 +15,7 @@ export default function Home() {
               muted
               autoPlay
               loop
-              src="blackwater.mp4"
+              src="blackWater.mp4"
               type="video/mp4"
               className="absolute z-10 w-auto min-w-full min-h-full max-w-none"
             >

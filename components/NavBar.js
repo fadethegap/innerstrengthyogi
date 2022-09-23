@@ -1,22 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useUser } from "../context/user";
 
 const navigation = [
   { name: "Classes", href: "/classes" },
-  // { name: "Discussion", href: "#" },
+  { name: "Workshops", href: "#" },
+  { name: "Retreats", href: "#" },
+  { name: "Location", href: "#" },
   // { name: "Marketplace", href: "#" },
   // { name: "Company", href: "#" },
 ];
 
 export default function NavBar() {
+  const { user } = useUser();
   return (
     <>
       <Popover as="header" className="relative">
-        <div className="py-3 bg-gray-200">
+        <div className="py-3 bg-white">
           <nav
             className="relative mx-auto flex max-w-7xl items-center px-4 sm:px-6"
             aria-label="Global"
@@ -63,16 +66,41 @@ export default function NavBar() {
               </div>
             </div>
             <div className="hidden md:flex md:items-center md:space-x-6">
-              <Link href="#">
-                <span className="text-base font-medium text-gray-700 hover:text-gray-400">
-                  Sign Up
-                </span>
-              </Link>
-              <Link href="#">
-                <span className="text-base font-medium text-gray-700 hover:text-gray-400">
-                  Log in
-                </span>
-              </Link>
+              {!user ? (
+                <>
+                  <Link href="/signup">
+                    <button
+                      type="button"
+                      className="ml-4 items-center rounded-full border border-transparent bg-logoTreeDarkGreen px-4 py-2 text-sm tracking-wider text-white shadow-sm hover:bg-fossilOcean focus:outline-none"
+                    >
+                      <span className="text-base font-medium text-gray-700 ">
+                        Join Us
+                      </span>
+                    </button>
+                  </Link>
+                  <Link href="/signin">
+                    <button
+                      type="button"
+                      className="ml-4 items-center rounded-full border border-transparent bg-logoTreeDarkGreen px-4 py-2 text-sm tracking-wider text-white shadow-sm hover:bg-fossilOcean focus:outline-none"
+                    >
+                      <span className="text-base font-medium text-gray-700">
+                        Log in
+                      </span>
+                    </button>
+                  </Link>
+                </>
+              ) : (
+                <Link href="/logout">
+                  <button
+                    type="button"
+                    className="ml-4 items-center rounded-full border border-transparent bg-logoTreeDarkGreen px-4 py-2 text-sm tracking-wider text-white shadow-sm hover:bg-fossilOcean focus:outline-none"
+                  >
+                    <span className="text-base font-medium text-gray-700">
+                      Log out
+                    </span>
+                  </button>
+                </Link>
+              )}
               {/* <a
                   href="#"
                   className="inline-flex items-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-base font-medium text-white hover:bg-gray-700"
@@ -145,16 +173,35 @@ export default function NavBar() {
                 </div> */}
                 <div className="mt-6 px-5">
                   <p className="text-center text-base font-medium text-gray-500">
-                    <Link href="#" className="text-gray-900 hover:underline">
-                      <span className="text-base font-medium text-gray-700 ">
-                        Sign Up
-                      </span>
-                    </Link>
-                    <Link href="#" className="text-gray-900 hover:underline">
-                      <span className="text-base font-medium text-gray-700 ml-5 ">
-                        Login
-                      </span>
-                    </Link>
+                    {!user ? (
+                      <>
+                        <Link
+                          href="/signup"
+                          className="text-gray-900 hover:underline"
+                        >
+                          <span className="text-base font-medium text-gray-700 ">
+                            Join Us
+                          </span>
+                        </Link>
+                        <Link
+                          href="signin"
+                          className="text-gray-900 hover:underline"
+                        >
+                          <span className="text-base font-medium text-gray-700 ml-5 ">
+                            Log In
+                          </span>
+                        </Link>
+                      </>
+                    ) : (
+                      <Link
+                        href="/logout"
+                        className="text-gray-900 hover:underline"
+                      >
+                        <span className="text-base font-medium text-gray-700 ml-5 ">
+                          Logout
+                        </span>
+                      </Link>
+                    )}
                   </p>
                 </div>
               </div>

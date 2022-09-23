@@ -1,0 +1,90 @@
+const classes = [
+  {
+    title: "Friends Yoga",
+    href: "#",
+    category: { name: "Article", href: "#" },
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto accusantium praesentium eius, ut atque fuga culpa, similique sequi cum eos quis dolorum.",
+    date: "Mar 16, 2020",
+    start_time: "9:00 AM",
+    end_time: "10:15 AM",
+    datetime: "2020-03-16",
+    event_period: "From 9:00 AM to 10:15 AM",
+    imageUrl: image1,
+    readingTime: "6 min",
+    author: {
+      name: "Roel Aufderehar",
+      href: "#",
+      imageUrl:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    },
+    active: true,
+    display: true,
+  },
+  {
+    title: "Senior & Mobility Friends Yoga",
+    href: "#",
+    category: { name: "Video", href: "#" },
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit facilis asperiores porro quaerat doloribus, eveniet dolore. Adipisci tempora aut inventore optio animi., tempore temporibus quo laudantium.",
+    date: "Mar 10, 2020",
+    start_time: "11:00 AM",
+    end_time: "12:00 PM",
+    datetime: "2020-03-10",
+    event_period: "From 11:00 AM to 12:00 PM",
+    imageUrl: image2,
+    readingTime: "4 min",
+    author: {
+      name: "Brenna Goyette",
+      href: "#",
+      imageUrl:
+        "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    },
+    active: true,
+    display: true,
+  },
+  {
+    title: "Playshop",
+    href: "#",
+    category: { name: "Case Study", href: "#" },
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint harum rerum voluptatem quo recusandae magni placeat saepe molestiae, sed excepturi cumque corporis perferendis hic.",
+    date: "Feb 12, 2020",
+    start_time: "11:00 AM",
+    end_time: "3:00 PM",
+    datetime: "2020-02-12",
+    event_period: "",
+    imageUrl: image3,
+    readingTime: "11 min",
+    author: {
+      name: "Daniela Metz",
+      href: "#",
+      imageUrl:
+        "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    },
+    active: false,
+    display: true,
+  },
+  {
+    title: "Meditations",
+    href: "#",
+    category: { name: "Case Study", href: "#" },
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint harum rerum voluptatem quo recusandae magni placeat saepe molestiae, sed excepturi cumque corporis perferendis hic.",
+    date: "Feb 12, 2020",
+    start_time: "11:00 AM",
+    end_time: "3:00 PM",
+    datetime: "2020-02-12",
+    event_period: "",
+    imageUrl: image4,
+    readingTime: "11 min",
+    author: {
+      name: "Daniela Metz",
+      href: "#",
+      imageUrl:
+        "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    },
+    active: false,
+    display: true,
+  },
+];

@@ -1,11 +1,31 @@
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {
+//   reactStrictMode: true,
+//   swcMinify: true,
+//   images: {
+//     domains: [process.env.NEXT_PUBLIC_SUPABASE_STORAGE_DOMAIN],
+//   },
+// };
+
+// module.exports = nextConfig;
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   reactStrictMode: true,
-  swcMinify: true,
+  webpack(config, {}) {
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      fs: false,
+      child_process: false,
+      net: false,
+      crypto: false,
+    };
+    return config;
+  },
+  images: {
+    domains: [
+      process.env.NEXT_PUBLIC_SUPABASE_STORAGE_DOMAIN,
+      "images.pexels.com",
+    ],
+  },
 };
-
-const withVideos = require("next-videos");
-
-module.exports = withVideos();
-
-module.exports = nextConfig;

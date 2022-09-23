@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -26,16 +27,6 @@ export default function NavBar() {
           >
             <div className="flex flex-1 items-center">
               <div className="flex w-full items-center justify-between md:w-auto">
-                {/* <Link href="/">
-                  <>
-                    <span className="sr-only">Inner Strength Yogi</span>
-                    <img
-                      className="h-8 w-auto sm:h-10"
-                      src="tree-of-life.png"
-                      alt=""
-                    />
-                  </>
-                </Link> */}
                 <Link href="/">
                   <img
                     className="h-8 w-auto sm:h-10 cursor-pointer"
@@ -128,11 +119,6 @@ export default function NavBar() {
             <div className="overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-gray-700 ring-opacity-5">
               <div className="flex items-center justify-between px-5 pt-4">
                 <div>
-                  {/* <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt=""
-                  /> */}
                   <Link href="/">
                     <img
                       className="h-8 w-auto sm:h-10 cursor-pointer"

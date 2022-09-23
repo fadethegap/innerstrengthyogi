@@ -23,6 +23,38 @@ export default function Login() {
   const [loginError, setLoginError] = useState(false);
 
   useEffect(() => {
+    // Handle form validation
+    const formValidation = () => {
+      console.log("Form Validating");
+      if (
+        firstNameLengthGood &&
+        lastNameLengthGood &&
+        emailGood &&
+        passwordLengthGood &&
+        passwordMatch
+      ) {
+        console.log("Form is Valid");
+        setFormValid(true);
+      } else {
+        //   if (!firstNameLengthGood) {
+        //     setFirstNameLengthMessage("Please enter your first name.");
+        //   }
+        //   if (!lastNameLengthGood) {
+        //     setLastNameLengthMessage("Please enter your last name.");
+        //   }
+        //   if (!emailGood) {
+        //     setEmailErrorMessage("Please enter a valid email address.");
+        //   }
+        //   if (!passwordLengthGood) {
+        //     setPasswordLengthMessage("Password must be at least 8 characters.");
+        //   }
+        //   if (!passwordMatch) {
+        //     setPasswordMatchMessage("Must match the password you entered above.");
+        //   }
+        console.log("Form is NOT Valid");
+        setFormValid(false);
+      }
+    };
     formValidation();
   }, [
     firstNameLengthGood,
@@ -95,39 +127,6 @@ export default function Login() {
     // formValidation();
   };
 
-  // Handle form validation
-  const formValidation = () => {
-    console.log("Form Validating");
-    if (
-      firstNameLengthGood &&
-      lastNameLengthGood &&
-      emailGood &&
-      passwordLengthGood &&
-      passwordMatch
-    ) {
-      console.log("Form is Valid");
-      setFormValid(true);
-    } else {
-      //   if (!firstNameLengthGood) {
-      //     setFirstNameLengthMessage("Please enter your first name.");
-      //   }
-      //   if (!lastNameLengthGood) {
-      //     setLastNameLengthMessage("Please enter your last name.");
-      //   }
-      //   if (!emailGood) {
-      //     setEmailErrorMessage("Please enter a valid email address.");
-      //   }
-      //   if (!passwordLengthGood) {
-      //     setPasswordLengthMessage("Password must be at least 8 characters.");
-      //   }
-      //   if (!passwordMatch) {
-      //     setPasswordMatchMessage("Must match the password you entered above.");
-      //   }
-      console.log("Form is NOT Valid");
-      setFormValid(false);
-    }
-  };
-
   const handleSubmit = () => {
     event.preventDefault();
     const signUp = signup(email, password, firstName, lastName);
@@ -143,7 +142,8 @@ export default function Login() {
           <div className="mx-auto w-full max-w-sm lg:w-96">
             <div>
               <h2 className="mt-6 text-2xl font-bold tracking-tight text-fossilOcean">
-                Join the <span className="italic">"Om Is Home"</span> Family
+                Join the <span className="italic">&quot;Om Is Home&quot;</span>{" "}
+                Family
               </h2>
               {/* <p>First Name Good: {firstNameLengthGood.toString()}</p>
               <p>Last Name Good: {lastNameLengthGood.toString()}</p>

@@ -9,8 +9,8 @@ import Logo from "../public/tree_of_life.png";
 
 const navigation = [
   { name: "Classes", href: "/classes" },
-  { name: "Workshops", href: "#" },
-  { name: "Retreats", href: "#" },
+  // { name: "Workshops", href: "#" },
+  // { name: "Retreats", href: "#" },
   { name: "Location", href: "/location" },
   // { name: "Marketplace", href: "#" },
   // { name: "Company", href: "#" },
@@ -30,7 +30,16 @@ export default function NavBar() {
             >
               <div className="flex flex-1 items-center">
                 <div className="flex w-full items-center justify-between md:w-auto">
-                  <Image src={Logo} width={50} height={50} />
+                  <Link href="/">
+                    <a>
+                      <Image
+                        src={Logo}
+                        width={50}
+                        height={50}
+                        className="cursor-pointer"
+                      />
+                    </a>
+                  </Link>
                   <div className="-mr-2 flex items-center md:hidden">
                     <Popover.Button className="focus-ring-inset inline-flex items-center justify-center rounded-md bg-gray-500 p-2 text-gray-200 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-white">
                       <span className="sr-only">Open main menu</span>
@@ -45,7 +54,7 @@ export default function NavBar() {
                       href={item.href}
                       // className="text-base font-medium text-gray-400 hover:text-gray-300"
                     >
-                      <span className="text-base font-medium text-gray-700 hover:text-gray-400">
+                      <span className="text-base font-medium text-gray-700 hover:text-gray-400 cursor-pointer">
                         {item.name}
                       </span>
                     </Link>

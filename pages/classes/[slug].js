@@ -8,7 +8,6 @@ import { getCookie } from "../../utils/cookies";
 export default function ClassDetail({ cls, products }) {
   const { isLoading } = useUser();
   const [imageURL, setImageURL] = useState(null);
-  const [productID, setProductID] = useState(null);
   // const productID = useRef("productID");
   // console.log("Class", cls);
   // console.log("All Products", products);
@@ -22,10 +21,6 @@ export default function ClassDetail({ cls, products }) {
       setImageURL(null);
     }
   }, []);
-
-  useEffect(() => {
-    console.log(getCookie(productID));
-  }, [productID]);
 
   const handleSelectedProduct = (prodID) => {
     console.log("Product ID", prodID);

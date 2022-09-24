@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
+import initStripe from "stripe";
+import { useUser } from "../../context/user";
+
 import { supabase } from "../../utils/supabase";
 import Image from "next/image";
 
-export default function ClassDetail({ cls }) {
+export default function ClassDetail({ cls, products }) {
+  const { isLoading } = useUser();
   const [imageURL, setImageURL] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  console.log("Class", cls);
+
+  // console.log("Class", cls);
+  // console.log("All Products", products);
 
   useEffect(() => {
     if (cls.image_name) {
@@ -15,19 +20,19 @@ export default function ClassDetail({ cls }) {
     } else {
       setImageURL(null);
     }
-    setIsLoaded(true);
   }, []);
+
   return (
     <>
-      {isLoaded && (
+      {!isLoading && (
         <div className="relative overflow-hidden bg-white py-16">
-          {/* <div className="mx-auto max-w-prose text-lg">
+          <div className="mx-auto max-w-prose text-lg">
             <h1>
               <span className="mt-2 block text-center text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl">
                 {cls.title}
               </span>
             </h1>
-          </div> */}
+          </div>
           <div className="hidden lg:absolute lg:inset-y-0 lg:block lg:h-full lg:w-full lg:[overflow-anchor:none]">
             <div
               className="relative mx-auto h-full max-w-prose text-lg"
@@ -142,7 +147,35 @@ export default function ClassDetail({ cls }) {
                   height={873}
                 />
               </figure>
-              <h2>{cls.title}</h2>
+
+              {products.length ? (
+                <div className="flex flex-wrap justify-around mb-5">
+                  {products.map((p, i) => (
+                    <div
+                      key={i}
+                      className="p-5 min-w-[300px] h-auto rounded-lg grid justify-center border-2 border-gray-300 m-2"
+                    >
+                      <div className="text-center text-xl text-gray-700">
+                        {p.name}
+                      </div>
+                      <div className="text-center">${p.price}</div>
+                      <p className="text-center max-w-[290px]">
+                        {p.description}
+                      </p>
+                      <button
+                        type="button"
+                        className="flex w-[290px] h-fit disabled:bg-fossilDisabled justify-center rounded-md border border-transparent bg-fossilOcean py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-fossilOceanHover focus:outline-none focus:ring-2 focus:ring-fossilOceanHover focus:ring-offset-2"
+                      >
+                        Join
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="bg-fossilOcean p-3 w-full text-center text-white rounded-lg mb-5">
+                  Coming Soon
+                </div>
+              )}
               <div>{cls.markup}</div>
             </div>
           </div>
@@ -174,9 +207,53 @@ export const getStaticProps = async ({ params: { slug } }) => {
     .eq("slug", slug)
     .single();
 
+  let omProducts = [];
+  const { data: productIDs, error: productError } = await supabase
+    .from("class_product_joiner")
+    .select("stripe_product_id")
+    .eq("class_id", cls.id);
+  if (productError) {
+    console.error(productError);
+  } else {
+    omProducts = productIDs;
+  }
+
+  const stripe = initStripe(process.env.STRIPE_SECRET_KEY);
+  const { data: allPrices } = await stripe.prices.list();
+
+  let prices = [];
+  if (omProducts) {
+    allPrices.map((ap) => {
+      omProducts.map((op) => {
+        if (ap.product === op.stripe_product_id) {
+          prices.push(ap);
+        }
+      });
+    });
+  }
+
+  let products = [];
+  if (prices) {
+    const allProducts = await stripe.products.list({
+      limit: 100,
+    });
+    prices.map((price) => {
+      allProducts.data.map((prod) => {
+        if (price.product === prod.id) {
+          products.push({
+            name: prod.name,
+            price: price.unit_amount / 100,
+            description: prod.description,
+          });
+        }
+      });
+    });
+  }
+
   return {
     props: {
       cls,
+      products,
     },
   };
 };

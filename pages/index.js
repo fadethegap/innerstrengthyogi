@@ -5,7 +5,7 @@ import { useUser } from "../context/user";
 
 export default function Home() {
   const { user } = useUser();
-  // console.log("User", user);
+  console.log("User", user);
   return (
     <>
       <div className="relative overflow-hidden">

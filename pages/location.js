@@ -17,7 +17,6 @@ export default function Location() {
                 // width="600"
                 // height="450"
                 width="100%"
-                width="100%"
                 // className="md:w-600px h-450px"
                 //   style={border: "0"}
                 allowFullScreen=""

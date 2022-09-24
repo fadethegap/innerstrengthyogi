@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import initStripe from "stripe";
 import { useUser } from "../../context/user";
-
 import { supabase } from "../../utils/supabase";
 import Image from "next/image";
+import { getCookie } from "../../utils/cookies";
 
 export default function ClassDetail({ cls, products }) {
   const { isLoading } = useUser();
   const [imageURL, setImageURL] = useState(null);
-
+  const [productID, setProductID] = useState(null);
+  // const productID = useRef("productID");
   // console.log("Class", cls);
   // console.log("All Products", products);
 
@@ -16,11 +17,20 @@ export default function ClassDetail({ cls, products }) {
     if (cls.image_name) {
       const iUrl = `${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}/storage/v1/object/public/images/${cls?.image_name}`;
       setImageURL(iUrl);
-      console.log("Image URL", iUrl);
+      // console.log("Image URL", iUrl);
     } else {
       setImageURL(null);
     }
   }, []);
+
+  useEffect(() => {
+    console.log(getCookie(productID));
+  }, [productID]);
+
+  const handleSelectedProduct = (prodID) => {
+    console.log("Product ID", prodID);
+    document.cookie = `productID=${prodID}`;
+  };
 
   return (
     <>
@@ -150,9 +160,9 @@ export default function ClassDetail({ cls, products }) {
 
               {products.length ? (
                 <div className="flex flex-wrap justify-around mb-5">
-                  {products.map((p, i) => (
+                  {products.map((p) => (
                     <div
-                      key={i}
+                      key={p.id}
                       className="p-5 min-w-[300px] h-auto rounded-lg grid justify-center border-2 border-gray-300 m-2"
                     >
                       <div className="text-center text-xl text-gray-700">
@@ -165,6 +175,7 @@ export default function ClassDetail({ cls, products }) {
                       <button
                         type="button"
                         className="flex w-[290px] h-fit disabled:bg-fossilDisabled justify-center rounded-md border border-transparent bg-fossilOcean py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-fossilOceanHover focus:outline-none focus:ring-2 focus:ring-fossilOceanHover focus:ring-offset-2"
+                        onClick={() => handleSelectedProduct(p.id)}
                       >
                         Join
                       </button>
@@ -241,6 +252,7 @@ export const getStaticProps = async ({ params: { slug } }) => {
       allProducts.data.map((prod) => {
         if (price.product === prod.id) {
           products.push({
+            id: prod.id,
             name: prod.name,
             price: price.unit_amount / 100,
             description: prod.description,

@@ -7,17 +7,30 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useUser } from "../context/user";
 import Logo from "../public/tree_of_life.png";
 
-const navigation = [
-  { name: "Classes", href: "/classes" },
-  // { name: "Workshops", href: "#" },
-  // { name: "Retreats", href: "#" },
-  { name: "Location", href: "/location" },
-  // { name: "Marketplace", href: "#" },
-  // { name: "Company", href: "#" },
-];
-
 export default function NavBar() {
   const { user, isLoading } = useUser();
+  const [navigation, setNavigation] = useState([]);
+  useEffect(() => {
+    if (user?.is_admin) {
+      setNavigation([
+        { name: "Classes", href: "/classes" },
+        // { name: "Workshops", href: "#" },
+        // { name: "Retreats", href: "#" },
+        { name: "Location", href: "/location" },
+        // { name: "Marketplace", href: "#" },
+        { name: "Dashboard", href: "/dashboard" },
+      ]);
+    } else {
+      setNavigation([
+        { name: "Classes", href: "/classes" },
+        // { name: "Workshops", href: "#" },
+        // { name: "Retreats", href: "#" },
+        { name: "Location", href: "/location" },
+        // { name: "Marketplace", href: "#" },
+        // { name: "Company", href: "#" },
+      ]);
+    }
+  }, [user]);
 
   return (
     <>

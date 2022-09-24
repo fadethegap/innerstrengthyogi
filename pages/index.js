@@ -1,11 +1,25 @@
 import Image from "next/image";
+import { useState, useEffect } from "react";
 import { supabase } from "../utils/supabase";
 import { useUser } from "../context/user";
+import { getCookie } from "../utils/cookies";
 // import streetArt from "../public/streetArt.jpg";
 
 export default function Home() {
   const { user } = useUser();
-  console.log("User", user);
+  const [visitor, setVisitor] = useState("Friends");
+  const [prodID, setProdID] = useState();
+
+  useEffect(() => {
+    if (user) {
+      setVisitor(user?.first_name);
+    }
+    const pID = getCookie("productID");
+    if (pID) {
+      setProdID(pID);
+    }
+  }, [user]);
+  // console.log("User", user);
   return (
     <>
       <div className="relative overflow-hidden">
@@ -13,15 +27,10 @@ export default function Home() {
           <header className="relative flex items-center justify-center h-screen mb-12 overflow-hidden">
             <div className="relative z-30 p-5 text-2xl text-slate-800 bg-white bg-opacity-80 rounded-xl mb-20">
               {/* <div className="text-sm text-center">Welcome to</div> */}
-              {user ? (
-                <div className="text-center tracking-widest">
-                  Welcome {user?.first_name}
-                </div>
-              ) : (
-                <div className="text-center tracking-widest">
-                  Welcome Friends
-                </div>
-              )}
+
+              <div className="text-center tracking-widest">
+                Welcome {visitor}
+              </div>
             </div>
             <video
               muted

@@ -32,6 +32,7 @@ const Provider = ({ children }) => {
     supabase.auth.onAuthStateChange(() => {
       getUserProfile();
     });
+
     setIsLoading(false);
   }, []);
 

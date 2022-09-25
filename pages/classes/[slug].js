@@ -3,7 +3,6 @@ import initStripe from "stripe";
 import { useUser } from "../../context/user";
 import { supabase } from "../../utils/supabase";
 import Image from "next/image";
-import { getCookie } from "../../utils/cookies";
 
 export default function ClassDetail({ cls, products }) {
   const { isLoading } = useUser();
@@ -144,33 +143,35 @@ export default function ClassDetail({ cls, products }) {
           <div className="relative px-4 sm:px-6 lg:px-8">
             <div className="prose prose-lg prose-indigo mx-auto mt-6 text-gray-500">
               <figure>
-                <Image
-                  className="w-full rounded-lg"
-                  src={imageURL}
-                  alt=""
-                  width={1310}
-                  height={873}
-                />
+                {imageURL && (
+                  <Image
+                    className="w-full rounded-lg"
+                    src={imageURL}
+                    alt=""
+                    width={1310}
+                    height={873}
+                  />
+                )}
               </figure>
 
-              {products.length ? (
+              {products?.length ? (
                 <div className="flex flex-wrap justify-around mb-5">
                   {products.map((p) => (
                     <div
-                      key={p.id}
+                      key={p?.id}
                       className="p-5 min-w-[300px] h-auto rounded-lg grid justify-center border-2 border-gray-300 m-2"
                     >
                       <div className="text-center text-xl text-gray-700">
-                        {p.name}
+                        {p?.name}
                       </div>
                       <div className="text-center">${p.price}</div>
                       <p className="text-center max-w-[290px]">
-                        {p.description}
+                        {p?.description}
                       </p>
                       <button
                         type="button"
                         className="flex w-[290px] h-fit disabled:bg-fossilDisabled justify-center rounded-md border border-transparent bg-fossilOcean py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-fossilOceanHover focus:outline-none focus:ring-2 focus:ring-fossilOceanHover focus:ring-offset-2"
-                        onClick={() => handleSelectedProduct(p.id)}
+                        onClick={() => handleSelectedProduct(p?.id)}
                       >
                         Join
                       </button>
@@ -182,7 +183,7 @@ export default function ClassDetail({ cls, products }) {
                   Coming Soon
                 </div>
               )}
-              <div>{cls.markup}</div>
+              <div>{cls?.markup}</div>
             </div>
           </div>
         </div>

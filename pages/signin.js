@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { supabase } from "../utils/supabase";
 import { useUser } from "../context/user";
 
@@ -6,8 +6,8 @@ export default function Login() {
   const { signin } = useUser();
   // const [firstName, setFirstName] = useState(null)
   // const [lastName, setLastName] = useState(null)
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   const [isDirty, setIsDirty] = useState(false);
   const [emailGood, setEmailGood] = useState(false);
   const [passwordLengthGood, setPasswordLengthGood] = useState(false);

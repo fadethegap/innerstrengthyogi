@@ -1,7 +1,6 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { supabase } from "../utils/supabase";
 import { useRouter } from "next/router";
-import { set } from "date-fns";
 
 const Context = createContext();
 
@@ -36,9 +35,9 @@ const Provider = ({ children }) => {
     setIsLoading(false);
   }, []);
 
-  const login = async () => {
-    supabase.auth.signIn({ provider: "github" });
-  };
+  // const login = async () => {
+  //   supabase.auth.signIn({ provider: "github" });
+  // };
 
   const logout = async () => {
     await supabase.auth.signOut();
@@ -78,7 +77,6 @@ const Provider = ({ children }) => {
 
   const exposed = {
     user,
-    login,
     logout,
     signup,
     signin,

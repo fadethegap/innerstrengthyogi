@@ -7,6 +7,7 @@ import Image from "next/image";
 export default function ClassDetail({ cls, products }) {
   const { isLoading } = useUser();
   const [imageURL, setImageURL] = useState(null);
+
   // const productID = useRef("productID");
   // console.log("Class", cls);
   // console.log("All Products", products);

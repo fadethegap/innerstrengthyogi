@@ -257,7 +257,7 @@ export default function Login() {
                       htmlFor="password"
                       className="block text-sm font-medium text-fossilOcean"
                     >
-                      Re-Password
+                      Re-Enter Password
                     </label>
                     <div className="mt-1">
                       <input

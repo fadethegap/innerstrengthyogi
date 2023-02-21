@@ -13,7 +13,7 @@ export default function NavBar() {
   useEffect(() => {
     if (user?.is_admin) {
       setNavigation([
-        { name: "Classes", href: "/classes" },
+        { name: "Classes", href: "/" },
         // { name: "Workshops", href: "#" },
         // { name: "Retreats", href: "#" },
         { name: "Location", href: "/location" },
@@ -22,7 +22,7 @@ export default function NavBar() {
       ]);
     } else {
       setNavigation([
-        { name: "Classes", href: "/classes" },
+        { name: "Classes", href: "/" },
         // { name: "Workshops", href: "#" },
         // { name: "Retreats", href: "#" },
         { name: "Location", href: "/location" },

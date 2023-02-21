@@ -1,0 +1,11 @@
+.bgVideo {
+  width: 100%;
+  height: 100vh;
+}
+
+.backgroundVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: red;
+}

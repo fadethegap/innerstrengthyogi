@@ -55,6 +55,8 @@ const Provider = ({ children }) => {
     if (error) {
       console.error(error);
     } else {
+      console.log("USER IN CONTEXT", user);
+      console.log("FIRST NAME AND LAST", firstName, lastName);
       const { data, error } = await supabase
         .from("profile")
         .update({ first_name: firstName, last_name: lastName })

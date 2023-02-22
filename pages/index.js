@@ -14,6 +14,8 @@ export default function Index({ stripeClasses }) {
   const [imageURLs, setImageURLs] = useState([]);
   const [classes, setClasses] = useState([]);
   const [webpageData, setWebpageData] = useState({});
+  const { user } = useUser();
+  console.log({ user });
 
   return (
     <>
@@ -23,16 +25,6 @@ export default function Index({ stripeClasses }) {
 }
 
 export const getStaticProps = async () => {
-  const { data: supabaseClasses, error: supabaseError } = await supabase
-    .from("classes")
-    .select("*");
-
-  if (supabaseError) {
-    console.error(supabaseError);
-  } else {
-    // console.log("SUPABASE CLASSES", supabaseClasses);
-  }
-
   const stripe = initStripe(process.env.STRIPE_SECRET_KEY);
   const allStripeData = await stripe.products.list({
     limit: 100,

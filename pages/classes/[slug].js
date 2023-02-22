@@ -15,22 +15,8 @@ export default function ClassDetail({ product }) {
   const [imageURL, setImageURL] = useState(null);
   const cls = "";
   const products = "";
-  // const productID = useRef("productID");
 
-  useEffect(() => {
-    // console.log({ classes });
-    // if (cls?.image_name) {
-    //   const iUrl = `${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}/storage/v1/object/public/images/${cls?.image_name}`;
-    //   setImageURL(iUrl);
-    //   // console.log("Image URL", iUrl);
-    // } else {
-    //   setImageURL(null);
-    // }
-    // const stripe = initStripe(process.env.STRIPE_SECRET_KEY);
-    // const product = await stripe.products.retrieve(productID);
-
-    console.log({ product });
-  }, []);
+  useEffect(() => {}, []);
 
   const handleSelectedProduct = (prodID) => {
     console.log("Product ID", prodID);
@@ -189,21 +175,6 @@ export default function ClassDetail({ product }) {
   );
 }
 
-// export const getStaticPaths = async () => {
-//   const { data: classes } = await supabase.from("classes").select("slug");
-
-//   const paths = classes.map(({ slug }) => ({
-//     params: {
-//       slug: slug,
-//     },
-//   }));
-
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// };
-
 export const getStaticPaths = async () => {
   const stripe = initStripe(process.env.STRIPE_SECRET_KEY);
   const allStripeData = await stripe.products.list({
@@ -234,84 +205,3 @@ export const getStaticProps = async (context) => {
     props: { product },
   };
 };
-
-// export const getStaticProps = async ({ params: { slug } }) => {
-//   console.log("SLUG", slug);
-//   const stripe = initStripe(process.env.STRIPE_SECRET_KEY);
-//   const product = await stripe.products.retrieve(slug);
-
-//   // const { data: allPrices } = await stripe.prices.list();
-
-//   return {
-//     props: {
-//       product,
-//     },
-//   };
-// };
-
-// export const getStaticProps = async ({ params: { slug } }) => {
-//   const { data: cls } = await supabase
-//     .from("classes")
-//     .select("*")
-//     .eq("slug", slug)
-//     .single();
-
-//   let omProducts = [];
-//   const { data: productIDs, error: productError } = await supabase
-//     .from("class_product_joiner")
-//     .select("stripe_product_id")
-//     .eq("class_id", cls.id);
-//   if (productError) {
-//     console.error(productError);
-//   } else {
-//     omProducts = productIDs;
-//   }
-
-//   const stripe = initStripe(process.env.STRIPE_SECRET_KEY);
-//   const { data: allPrices } = await stripe.prices.list();
-
-//   let prices = [];
-//   if (omProducts) {
-//     allPrices.map((ap) => {
-//       omProducts.map((op) => {
-//         if (ap.product === op.stripe_product_id) {
-//           prices.push(ap);
-//         }
-//       });
-//     });
-//   }
-//   console.log("Prices", prices);
-//   let products = [];
-//   if (prices) {
-//     const allProducts = await stripe.products.list({
-//       limit: 100,
-//     });
-//     products = allProducts;
-//     // allProducts.map((prod) => {
-//     //   if (prod.images.length) {
-//     //     prod.images.map((image) => {
-//     //       console.log("Product Image URL", image);
-//     //     });
-//     //   }
-//     // });
-//     // console.log("PRODUCTS", allProducts.images.length);
-//     // prices.map((price) => {
-//     //   allProducts.data.map((prod) => {
-//     //     if (price.product === prod.id) {
-//     //       products.push({
-//     //         id: prod.id,
-//     //         name: prod.name,
-//     //         price: price.unit_amount / 100,
-//     //         description: prod.description,
-//     //       });
-//     //     }
-//     //   });
-//     // });
-//   }
-//   return {
-//     props: {
-//       cls,
-//       products,
-//     },
-//   };
-// };

@@ -47,6 +47,9 @@ const Provider = ({ children }) => {
   };
 
   const signup = async (email, password, firstName, lastName) => {
+    console.log(
+      `Email: ${email}, Password: ${password}, First Name: ${firstName}, Last Name: ${lastName}`
+    );
     const { user, session, error } = await supabase.auth.signUp({
       email: email,
       password: password,
@@ -56,7 +59,6 @@ const Provider = ({ children }) => {
       console.error(error);
     } else {
       console.log("USER IN CONTEXT", user);
-      console.log("FIRST NAME AND LAST", firstName, lastName);
       const { data, error } = await supabase
         .from("profile")
         .update({ first_name: firstName, last_name: lastName })

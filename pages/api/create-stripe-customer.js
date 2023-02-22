@@ -11,15 +11,17 @@ const handler = async (req, res) => {
   const customer = await stripe.customers.create({
     email: req.body.record.email,
   });
-  console.log("CUSTOMER", customer);
+
+  console.log("STRIPE CUSTOMER", customer);
   const supabase = getServiceSupabase();
-  console.log(customer);
-  await supabase
+  const { data, error } = await supabase
     .from("profile")
     .update({
       stripe_customer_id: customer.id,
     })
     .eq("id", req.body.record.id);
+
+  console.log("DATA", data);
 
   // await supabase.rpc("insert_into_profile_history", {
   //   user_id: profile.id,

@@ -25,7 +25,7 @@ export default function Login() {
   useEffect(() => {
     // Handle form validation
     const formValidation = () => {
-      console.log("Form Validating");
+      // console.log("Form Validating");
       if (
         firstNameLengthGood &&
         lastNameLengthGood &&
@@ -33,7 +33,7 @@ export default function Login() {
         passwordLengthGood &&
         passwordMatch
       ) {
-        console.log("Form is Valid");
+        // console.log("Form is Valid");
         setFormValid(true);
       } else {
         //   if (!firstNameLengthGood) {
@@ -51,7 +51,7 @@ export default function Login() {
         //   if (!passwordMatch) {
         //     setPasswordMatchMessage("Must match the password you entered above.");
         //   }
-        console.log("Form is NOT Valid");
+        // console.log("Form is NOT Valid");
         setFormValid(false);
       }
     };
@@ -127,8 +127,8 @@ export default function Login() {
     // formValidation();
   };
 
-  const handleSubmit = () => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const signUp = signup(email, password, firstName, lastName);
     if (!signUp) {
       setLoginError(true);
@@ -280,7 +280,7 @@ export default function Login() {
                     <button
                       type="button"
                       className="flex w-full disabled:bg-fossilDisabled justify-center rounded-md border border-transparent bg-fossilOcean py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-fossilOceanHover focus:outline-none focus:ring-2 focus:ring-fossilOceanHover focus:ring-offset-2"
-                      onClick={handleSubmit}
+                      onClick={(e) => handleSubmit(e)}
                       disabled={!formValid}
                     >
                       Join Us

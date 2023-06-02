@@ -16,6 +16,7 @@ export default function Index({ stripeClasses }) {
   const [webpageData, setWebpageData] = useState({});
   const { user } = useUser();
   // console.log({ user });
+  console.log({ stripeClasses });
 
   return (
     <>

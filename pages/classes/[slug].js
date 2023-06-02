@@ -5,22 +5,36 @@ import { supabase } from "../../utils/supabase";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useClasses } from "../../context/classes";
+import { isAbsoluteUrl } from "next/dist/shared/lib/utils";
+import axios from "axios";
 
 export default function ClassDetail({ product }) {
   const { classes } = useClasses();
-
+  const user = useUser();
   const router = useRouter();
   const productID = router.query.slug;
   const { isLoading } = useUser();
   const [imageURL, setImageURL] = useState(null);
   const cls = "";
   const products = "";
+  console.log({ user });
 
   useEffect(() => {}, []);
 
   const handleSelectedProduct = (prodID) => {
-    console.log("Product ID", prodID);
-    document.cookie = `productID=${prodID}`;
+    // if (!user.is_authenticated) {
+    //   console.log("Not a user");
+    //   router.push("/signup");
+    // } else {
+    //   console.log("User");
+    // }
+    // console.log("Product ID", prodID);
+    // document.cookie = `productID=${prodID}`;
+    if (user?.isAuthenticated) {
+      console.log("Authenticated");
+    } else {
+      router.push("/signup");
+    }
   };
 
   return (
@@ -162,7 +176,7 @@ export default function ClassDetail({ product }) {
                       className="flex w-[290px] h-fit disabled:bg-fossilDisabled justify-center rounded-md border border-transparent bg-fossilOcean py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-fossilOceanHover focus:outline-none focus:ring-2 focus:ring-fossilOceanHover focus:ring-offset-2"
                       onClick={() => handleSelectedProduct(product?.id)}
                     >
-                      Join
+                      Purchase
                     </button>
                   </div>
                 </div>

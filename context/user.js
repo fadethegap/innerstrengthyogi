@@ -8,6 +8,8 @@ const Provider = ({ children }) => {
   const router = useRouter();
   const [user, setUser] = useState(supabase.auth.user());
   const [isLoading, setIsLoading] = useState(true);
+  const [userData, setUserData] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const getUserProfile = async () => {
@@ -18,11 +20,17 @@ const Provider = ({ children }) => {
           .select("*")
           .eq("id", sessionUser.id)
           .single();
+        // console.log("Session User ID", sessionUser.id);
 
         setUser({
           ...sessionUser,
           ...profile,
         });
+        setUserData(profile);
+        // Set authentcation status
+        if (profile.id) {
+          setIsAuthenticated(true);
+        }
       }
     };
 
@@ -85,6 +93,8 @@ const Provider = ({ children }) => {
     signup,
     signin,
     isLoading,
+    userData,
+    isAuthenticated,
   };
 
   return <Context.Provider value={exposed}>{children}</Context.Provider>;

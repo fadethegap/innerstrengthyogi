@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { supabase } from "../utils/supabase";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 const Context = createContext();
 
@@ -43,9 +44,12 @@ const Provider = ({ children }) => {
     setIsLoading(false);
   }, []);
 
-  // const login = async () => {
-  //   supabase.auth.signIn({ provider: "github" });
-  // };
+  useEffect(() => {
+    axios.post("/api/set-supabase-cookie", {
+      event: user ? "SIGNED_IN" : "SIGNED_OUT",
+      session: supabase.auth.session(),
+    });
+  }, [user]);
 
   const logout = async () => {
     await supabase.auth.signOut();

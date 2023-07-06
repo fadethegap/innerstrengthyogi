@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useClasses } from "../../context/classes";
 import { isAbsoluteUrl } from "next/dist/shared/lib/utils";
 import axios from "axios";
+import { loadStripe } from "@stripe/stripe-js";
 
 export default function ClassDetail({ product }) {
   const { classes } = useClasses();
@@ -21,19 +22,18 @@ export default function ClassDetail({ product }) {
 
   useEffect(() => {}, []);
 
-  const handleSelectedProduct = (prodID) => {
-    // if (!user.is_authenticated) {
-    //   console.log("Not a user");
-    //   router.push("/signup");
-    // } else {
-    //   console.log("User");
-    // }
-    // console.log("Product ID", prodID);
-    // document.cookie = `productID=${prodID}`;
-    if (user?.isAuthenticated) {
-      console.log("Authenticated");
-    } else {
+  const processSubscription = async (productID) => {
+    const { data } = await axios.get(`/api/subscription/${productID}`);
+    const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
+    await stripe.redirectToCheckout({ sessionId: data.id });
+  };
+
+  const handleSelectedProduct = (productID) => {
+    if (!user.isAuthenticated) {
+      document.cookie = `productID=${productID}`;
       router.push("/signup");
+    } else {
+      processSubscription(productID);
     }
   };
 
@@ -156,15 +156,19 @@ export default function ClassDetail({ product }) {
               <div className="flex flex-wrap justify-around mb-5">
                 <div
                   key={product?.id}
-                  className="p-5 min-w-[300px] h-auto rounded-lg grid justify-center border-2 border-gray-300 m-2"
+                  className="p-5 min-w-[300px] h-auto rounded-lg grid justify-center m-2"
                 >
-                  <Image
-                    className="w-full rounded-lg"
-                    src={product.images[0]}
-                    alt=""
-                    width={1310}
-                    height={873}
-                  />
+                  <div className="relative h-96 w-full rounded">
+                    <Image
+                      className="w-full rounded-lg"
+                      src={product.images[0]}
+                      alt=""
+                      // width={1310}
+                      // height={873}
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </div>
                   <div className="text-center text-xl text-gray-700 mt-5">
                     {product?.name}
                   </div>{" "}

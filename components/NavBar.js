@@ -14,20 +14,13 @@ export default function NavBar() {
     if (user?.is_admin) {
       setNavigation([
         { name: "Classes", href: "/" },
-        // { name: "Workshops", href: "#" },
-        // { name: "Retreats", href: "#" },
         { name: "Location", href: "/location" },
-        // { name: "Marketplace", href: "#" },
-        { name: "Dashboard", href: "/dashboard" },
       ]);
     } else {
       setNavigation([
         { name: "Classes", href: "/" },
-        // { name: "Workshops", href: "#" },
-        // { name: "Retreats", href: "#" },
         { name: "Location", href: "/location" },
-        // { name: "Marketplace", href: "#" },
-        // { name: "Company", href: "#" },
+        { name: "Dashboard", href: "/dashboard" },
       ]);
     }
   }, [user]);
@@ -99,16 +92,18 @@ export default function NavBar() {
                     </Link>
                   </>
                 ) : (
-                  <Link href="/logout">
-                    <button
-                      type="button"
-                      className="ml-4 items-center rounded-full border border-transparent bg-logoTreeDarkGreen px-4 py-2 text-sm tracking-wider text-white shadow-sm hover:bg-fossilOcean focus:outline-none"
-                    >
-                      <span className="text-base font-medium text-gray-700 ">
-                        Log out
-                      </span>
-                    </button>
-                  </Link>
+                  <>
+                    <Link href="/logout">
+                      <button
+                        type="button"
+                        className="ml-4 items-center rounded-full border border-transparent bg-logoTreeDarkGreen px-4 py-2 text-sm tracking-wider text-white shadow-sm hover:bg-fossilOcean focus:outline-none"
+                      >
+                        <span className="text-base font-medium text-gray-700 ">
+                          Log out
+                        </span>
+                      </button>
+                    </Link>
+                  </>
                 )}
                 {/* <a
                   href="#"

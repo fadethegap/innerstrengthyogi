@@ -75,21 +75,24 @@ const Provider = ({ children }) => {
     });
   }, [refreshUser]);
 
-  useEffect(async () => {
-    const checkForPasswordReset = async () => {
-      const parsedHash = new URLSearchParams(
-        window.location.hash.substr(1) // skip the first char (#)
-      );
-      if (parsedHash.get("type") === "recovery") {
-        return (token = parsedHash.get("access_token"));
+  useEffect(() => {
+    const runMe = async () => {
+      const checkForPasswordReset = async () => {
+        const parsedHash = new URLSearchParams(
+          window.location.hash.substr(1) // skip the first char (#)
+        );
+        if (parsedHash.get("type") === "recovery") {
+          return (token = parsedHash.get("access_token"));
+        }
+      };
+      const token = await checkForPasswordReset();
+      if (token) {
+        setToken(token);
+        setShowResetPasswordModal(true);
+        router.push(`/`);
       }
     };
-    const token = await checkForPasswordReset();
-    if (token) {
-      setToken(token);
-      setShowResetPasswordModal(true);
-      router.push(`/`);
-    }
+    runMe();
   }, []);
 
   useEffect(() => {

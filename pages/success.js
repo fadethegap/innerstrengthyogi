@@ -42,7 +42,7 @@ export default function Success() {
     }
 
     // Include router.query in the dependencies array so the effect is re-run whenever the query parameters change
-  }, [router.query]);
+  }, [router]);
 
   return (
     <div className="max-w-5xl mx-auto">
@@ -59,7 +59,7 @@ export default function Success() {
           Thank you for purchasing{" "}
           <span className="text-lg font-bold">{productName}</span>.
         </div>
-        <div className="text-center">I can't wait to see you there!</div>
+        <div className="text-center">I cannot wait to see you there!</div>
       </div>
     </div>
   );

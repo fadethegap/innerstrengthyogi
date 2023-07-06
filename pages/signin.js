@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { supabase } from "../utils/supabase";
 import { useUser } from "../context/user";
+import Image from "next/image";
 
 export default function Login() {
   const { signin } = useUser();
@@ -149,10 +150,13 @@ export default function Login() {
           </div>
         </div>
         <div className="relative hidden w-0 flex-1 lg:block">
-          <img
+          <Image
             className="absolute inset-0 h-full w-full object-cover"
-            src="fossilOcean.jpg"
-            alt=""
+            src="/fossilOcean.jpg"
+            alt="fossil"
+            fill
+            width="650"
+            height="650"
           />
         </div>
       </div>

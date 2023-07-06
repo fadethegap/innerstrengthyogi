@@ -13,7 +13,7 @@ export default function ClassesList({ stripeClasses }) {
   const [imageName, setImageName] = useState();
   const [imageURL, setImageURL] = useState();
 
-  useEffect(async () => {
+  useEffect(() => {
     setClasses(stripeClasses);
   }, []);
 

@@ -65,7 +65,7 @@
 //     useState(false);
 
 //   // Handle correlating asset id with user signup
-//   useEffect(async () => {
+//   useEffect(() => {
 //     const subscriptionAssetID = getCookie("signUpAssetID");
 //     if (user && subscriptionAssetID) {
 //       axios.post("/api/correlate-subscription-asset", {
